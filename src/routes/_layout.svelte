@@ -25,6 +25,6 @@
 
 <Nav {segment}/>
 
-<main>
+<main id="main-container">
 	<slot></slot>
 </main>

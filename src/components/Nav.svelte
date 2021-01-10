@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let segment: string;
 
+	import { onMount } from 'svelte';
 	import { goto } from '@sapper/app';
 
 	const navLinks = function(): Array<{href: string, selected: boolean}> {
@@ -29,9 +30,8 @@
 		return links[prevI].href;
 	}
 
-	const navigate = function(event){
-		// the user is not writing in form input
-		console.log(event.key)
+	const navigateFromKeyup = function(event){
+		// let's check the user is not writing in form input
 		if (event.target.type === undefined){
 			if (['n', 'arrowright'].includes(event.key.toLowerCase())) {
 				goto(next());
@@ -40,6 +40,33 @@
 			}
 		}
 	}
+
+	const navigateFromSwipe = function(event){
+		const direction = event.offsetDirection;
+		// 2 is swipe left, 4 is right
+		if (direction == 2){
+			goto(next());
+		} else if (direction == 4){
+			goto(prev());
+		}
+		return;
+	}
+
+	// We can only use hammerjs clientside; import the module
+	// dynamically, and then start listening for swipe events.
+	let Hammer;
+	onMount(async () => {
+		const module = await import('hammerjs');
+		Hammer = module.default;
+
+		// swipe only works in main container area
+		const main = document.getElementById('main-container');
+		var manager = new Hammer.Manager(main);
+		var Swipe = new Hammer.Swipe();
+		manager.add(Swipe);
+		manager.on('swipe', navigateFromSwipe);
+	});
+
 
 </script>
 
@@ -105,4 +132,4 @@
 	</ul>
 </nav>
 
-<svelte:window on:keyup={navigate}/>
+<svelte:window on:keyup={navigateFromKeyup}/>
