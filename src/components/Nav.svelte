@@ -66,8 +66,7 @@
     Hammer = module.default;
 
     // swipe only works in main container area
-    const main = document.getElementById("main-container");
-    var manager = new Hammer.Manager(main);
+    var manager = new Hammer.Manager(document.body);
     var Swipe = new Hammer.Swipe();
     manager.add(Swipe);
     manager.on("swipe", navigateFromSwipe);
