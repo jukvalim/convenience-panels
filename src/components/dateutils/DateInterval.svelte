@@ -2,7 +2,7 @@
   import format from "date-fns-tz/format";
   import intervalToDuration from "date-fns/intervalToDuration";
   import formatDuration from "date-fns/formatDuration";
-  import isValid from 'date-fns/isValid';
+  import isValid from "date-fns/isValid";
   import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
   import differenceInCalendarWeeks from "date-fns/differenceInCalendarWeeks";
   import differenceInCalendarMonths from "date-fns/differenceInCalendarMonths";
@@ -14,7 +14,7 @@
 
   const eventDate = (event, defDate: Date): Date => {
     const d = new Date(event.currentTarget.value);
-    if(!isValid(d)){
+    if (!isValid(d)) {
       return defDate;
     }
     d.setHours(0, 0, 0, 0);
@@ -45,7 +45,7 @@
     <p>
       {dayDifference} in days
       {#if weekDifference >= 2}
-        |  {weekDifference} in weeks
+        | {weekDifference} in weeks
       {/if}
       {#if monthDifference > 12}
         | {monthDifference} in months

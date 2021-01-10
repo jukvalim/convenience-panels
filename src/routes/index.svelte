@@ -1,12 +1,12 @@
 <script>
-	import Today from "../components/dateutils/Today.svelte"
+  import Today from "../components/dateutils/Today.svelte";
 </script>
 
-<style>
-</style>
-
 <svelte:head>
-	<title>Today</title>
+  <title>Today</title>
 </svelte:head>
 
 <Today />
+
+<style>
+</style>
