@@ -41,8 +41,8 @@
       }}" />
   </div>
 
-  <h2>{dtFmt(dt)}</h2>
-  <h3>Week {tzFmt(dt, "I")}</h3>
+  <h3>{dtFmt(dt)}</h3>
+  <h3>{tzFmt(dt, "EEEE")}, Week {tzFmt(dt, "I")}</h3>
 </div>
 
 <style>

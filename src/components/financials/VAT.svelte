@@ -39,7 +39,6 @@
 </script>
 
 <div>
-  <h2>VAT</h2>
 
   <div>
     <label for="price">Price without VAT</label>
@@ -47,7 +46,7 @@
       id="price"
       type="number"
       min="0"
-      step="0.01"
+      step="any"
       on:input="{updatePrice}"
       bind:value="{price}" />
   </div>
@@ -73,7 +72,7 @@
       id="total"
       type="number"
       min="0"
-      step="0.01"
+      step="any"
       on:input="{updateTotal}"
       bind:value="{total}" />
   </div>
