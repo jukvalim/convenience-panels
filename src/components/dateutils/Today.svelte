@@ -20,14 +20,11 @@
   };
   dateUpdater();
 
-  const tzFmt = function (dt: Date, wantedFormat: string) {
-    return format(dt, wantedFormat, tzOptions);
+  const tzFmt = function (d: Date, wantedFormat: string) {
+    return format(d, wantedFormat, tzOptions);
   };
-  const dtFmt = function (dt: Date) {
-    return tzFmt(zonedTime, dateTimeFormat);
-  };
-  const dateFmt = function (dt: Date) {
-    return tzFmt(zonedTime, dateFormat);
+  const dtFmt = function (d: Date) {
+    return tzFmt(d, dateTimeFormat);
   };
 </script>
 
@@ -44,8 +41,8 @@
       }}" />
   </div>
 
-  <h3>{dtFmt(dt)}</h3>
-  <h3>{tzFmt(dt, "EEEE")}, Week {tzFmt(dt, "I")}</h3>
+  <h3>{dtFmt(zonedTime)}</h3>
+  <h3>{tzFmt(zonedTime, "EEEE")}, Week {tzFmt(zonedTime, "I")}</h3>
 </div>
 
 <style>
