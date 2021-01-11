@@ -76,17 +76,22 @@
 <nav>
   <ul id="menu">
     <li>
-      <a rel=prefetch aria-current="{segment === undefined ? 'page' : undefined}" href="."
-        >Today</a>
+      <a
+        rel="prefetch"
+        aria-current="{segment === undefined ? 'page' : undefined}"
+        href=".">Today</a>
     </li>
     <li>
-      <a rel=prefetch
+      <a
+        rel="prefetch"
         aria-current="{segment === 'interval' ? 'page' : undefined}"
         href="interval">Date Interval</a>
     </li>
     <li>
-      <a rel=prefetch aria-current="{segment === 'vat' ? 'page' : undefined}" href="vat"
-        >VAT</a>
+      <a
+        rel="prefetch"
+        aria-current="{segment === 'vat' ? 'page' : undefined}"
+        href="vat">VAT</a>
     </li>
 
     <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches

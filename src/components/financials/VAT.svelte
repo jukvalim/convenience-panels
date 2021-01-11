@@ -39,7 +39,6 @@
 </script>
 
 <div>
-
   <div>
     <label for="price">Price without VAT</label>
     <input
