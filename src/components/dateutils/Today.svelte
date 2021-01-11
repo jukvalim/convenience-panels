@@ -10,7 +10,7 @@
   $: tzOptions = { timeZone };
   $: zonedTime = utcToZonedTime(dt, timeZone);
   const timeZones = listTimeZones().map((tz) => {
-    return { value: tz, label: `${tz} timezone` };
+    return { value: tz, label: `${tz}` };
   });
   const selectedTz = { value: timeZone, label: timeZone };
 
@@ -32,10 +32,13 @@
 </script>
 
 <div>
+  <label for="tz-select">Timezone</label>
   <div id="select-wrapper">
     <Select
       items="{timeZones}"
       selectedValue="{selectedTz}"
+      inputAttributes="{{id: 'tz-select'}}"
+      listAutoWidth="{false}"
       on:select="{(event) => {
         timeZone = event.detail.value;
       }}" />
