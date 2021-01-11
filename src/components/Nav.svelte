@@ -76,16 +76,16 @@
 <nav>
   <ul id="menu">
     <li>
-      <a aria-current="{segment === undefined ? 'page' : undefined}" href="."
+      <a rel=prefetch aria-current="{segment === undefined ? 'page' : undefined}" href="."
         >Today</a>
     </li>
     <li>
-      <a
+      <a rel=prefetch
         aria-current="{segment === 'interval' ? 'page' : undefined}"
         href="interval">Date Interval</a>
     </li>
     <li>
-      <a aria-current="{segment === 'vat' ? 'page' : undefined}" href="vat"
+      <a rel=prefetch aria-current="{segment === 'vat' ? 'page' : undefined}" href="vat"
         >VAT</a>
     </li>
 
