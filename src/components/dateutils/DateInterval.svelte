@@ -1,5 +1,6 @@
 <script lang="ts">
   import format from "date-fns-tz/format";
+  import add from "date-fns/add";
   import intervalToDuration from "date-fns/intervalToDuration";
   import formatDuration from "date-fns/formatDuration";
   import isValid from "date-fns/isValid";
@@ -21,10 +22,13 @@
     return d;
   };
 
-  $: duration = intervalToDuration({ start: fromDate, end: toDate });
-  $: dayDifference = differenceInCalendarDays(toDate, fromDate);
-  $: weekDifference = differenceInCalendarWeeks(toDate, fromDate);
-  $: monthDifference = differenceInCalendarMonths(toDate, fromDate);
+  let inclusiveRange = true;
+
+  $: toForDifferenceCalc = inclusiveRange ? add(toDate, {days: 1}): toDate;
+  $: duration = intervalToDuration({ start: fromDate, end: toForDifferenceCalc });
+  $: dayDifference = differenceInCalendarDays(toForDifferenceCalc, fromDate);
+  $: weekDifference = differenceInCalendarWeeks(toForDifferenceCalc, fromDate);
+  $: monthDifference = differenceInCalendarMonths(toForDifferenceCalc, fromDate);
 </script>
 
 <div>
@@ -39,6 +43,16 @@
     value="{format(toDate, dateFormat)}"
     on:change="{(event) => (toDate = eventDate(event, toDate))}" />
   (week {format(toDate, "I")})
+
+  <div id="inclusive">
+    <label for="inclusive-range" title="Is the interval inclusive or not? E.g is Monday to Tuesday one or two days.">
+      Inclusive
+    </label>
+    <input id="inclusive-range"
+      type="checkbox"
+      checked="{inclusiveRange}"
+      on:change="{(event) => (inclusiveRange = event.currentTarget.checked )}" />
+  </div>
 
   <h3>{formatDuration(duration)}</h3>
   {#if dayDifference > 6}
@@ -59,5 +73,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  div#inclusive {
+    flex-direction: row;
+    padding-top: 10px;
+  }
+
+  div#inclusive > input {
+    margin: 2px;
   }
 </style>
